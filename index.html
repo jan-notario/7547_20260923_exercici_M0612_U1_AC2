@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Reserves i Preferències - Enterprise Edition</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="header-container">
+            <h1>Grand Palace Resort</h1>
+            <p class="subtitle">Gestor de Reserves i Preferències d'Usuari</p>
+        </div>
+    </header>
+
+    <main class="main-container">
+
+        <!-- ALERTA D'ERROR GLOBAL -->
+        <div id="errorMessage" class="alert alert-danger" style="display: none;" role="alert"></div>
+
+        <!-- BLOC 1: GESTIÓ TEMPORAL I RESERVA -->
+        <section class="card">
+            <h2>1. Detalls de la Reserva</h2>
+            
+            <form id="bookingForm" class="form-grid">
+                <div class="form-group">
+                    <label for="checkInInput">Data d'Entrada (Check-in):</label>
+                    <input type="date" id="checkInInput" value="2026-09-18" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="checkOutInput">Data de Sortida (Check-out):</label>
+                    <input type="date" id="checkOutInput" value="2026-09-21" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <button type="button" id="btnCalculateStay" class="btn btn-primary">Calcular Estada i Preu</button>
+                </div>
+            </form>
+
+            <div class="booking-summary card-inner">
+                <h3>Resum Financier i Temporal</h3>
+                <ul>
+                    <li><strong>Localitzador:</strong> <span id="bookingIdDisplay">RES-2026-8942</span></li>
+                    <li><strong>Entrada:</strong> <span id="checkInDisplay">--</span></li>
+                    <li><strong>Sortida:</strong> <span id="checkOutDisplay">--</span></li>
+                    <li><strong>Durada:</strong> <span id="stayNightsDisplay">--</span> nits</li>
+                    <li><strong>Preu per nit:</strong> <span id="pricePerNightDisplay">--</span></li>
+                    <li class="total-price"><strong>Total Estada:</strong> <span id="totalPriceDisplay">--</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- BLOC 2: PREFERÈNCIES I PERSISTÈNCIA -->
+        <section class="card">
+            <h2>2. Preferències de l'Usuari</h2>
+            
+            <form id="preferencesForm" class="form-grid">
+                <div class="form-group">
+                    <label for="themeSelect">Tema Visual:</label>
+                    <select id="themeSelect">
+                        <option value="light">Clar (Light)</option>
+                        <option value="dark">Fosc (Dark)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="langSelect">Idioma de la Interfície:</label>
+                    <select id="langSelect">
+                        <option value="ca-ES">Català (ca-ES)</option>
+                        <option value="es-ES">Español (es-ES)</option>
+                        <option value="en-US">English (en-US)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="currencySelect">Moneda de Pagament:</label>
+                    <select id="currencySelect">
+                        <option value="EUR">Euro (€)</option>
+                        <option value="USD">Dòlar Nord-americà ($)</option>
+                        <option value="GBP">Lliura Esterlina (£)</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <button type="button" id="btnSavePreferences" class="btn btn-secondary">Desar Preferències a LocalStorage</button>
+                </div>
+            </form>
+
+            <div class="status-box">
+                <small>Última cerca registrada: <span id="lastSearchDisplay">Mai</span></small>
+            </div>
+        </section>
+
+        <!-- BLOC 3: APIS NATIVES DEL NAVEGADOR -->
+        <section class="card">
+            <h2>3. APIs Natives del Navegador</h2>
+            
+            <div class="button-group">
+                <button type="button" id="btnCopyCode" class="btn btn-outline">
+                    📋 Copiar Localitzador
+                </button>
+                
+                <button type="button" id="btnShareBooking" class="btn btn-outline">
+                    🔗 Compartir Reserva
+                </button>
+                
+                <button type="button" id="btnNotify" class="btn btn-outline">
+                    🔔 Activar Notificació de Proximitat
+                </button>
+                
+                <button type="button" id="btnNearbyHotels" class="btn btn-outline">
+                    📍 Cerca Hotels Propers (GPS)
+                </button>
+            </div>
+
+            <div id="apiFeedback" class="status-box" style="margin-top: 15px;">
+                <small>Estat del sistema: Sincronitzador en segon pla actiu.</small>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 Grand Palace Resort - Desenvolupament Web en Entorn Client</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
